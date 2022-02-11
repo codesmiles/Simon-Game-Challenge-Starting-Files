@@ -1,5 +1,4 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
-
 const gamePattern = [];
 const userClickedPattern = [];
 
@@ -8,11 +7,13 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber]; //random color from the array of buttonColours
   gamePattern.push(randomChosenColour); //  push the random colors generated into the gamePattern array
   $(`#${randomChosenColour}`).fadeOut(100).fadeIn(100); // Pick random divs with random colours
+  animatePress();
 
   // animate and play sound
   playSound().click(function () {
     // animate current colors when clicked
     $(this).fadeOut(100).fadeIn(100);
+    animatePress();
     let userChosenColour = $(this).attr("id");
     userClickedPattern.push(userChosenColour);
 
@@ -30,11 +31,13 @@ function nextSequence() {
   }
 
   function animatePress(currentColour) {
-    return $(`#${randomChosenColour}`).click(() => {
-      $(this).addClass("pressed").delay(100).removeClass("pressed");
-    });
+   $(`#${randomChosenColour}`).addClass("pressed");
+   return setTimeout(function () {
+      $(`#${randomChosenColour}`).removeClass("pressed");
+    }, 100);
   }
 }
+
 
 // $("document").ready(function () {
 //   const audio = new Audio("source.mp3");

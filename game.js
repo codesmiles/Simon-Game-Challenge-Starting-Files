@@ -1,6 +1,13 @@
 const buttonColours = ["red", "blue", "green", "yellow"];
 const gamePattern = [];
 const userClickedPattern = [];
+let level = 0;
+
+// Starting the game
+$(document).keypress(function (e) {
+  $(this).unbind("keypress");
+  nextSequence();
+});
 
 function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4); //0 - 3
@@ -31,13 +38,12 @@ function nextSequence() {
   }
 
   function animatePress(currentColour) {
-   $(`#${randomChosenColour}`).addClass("pressed");
-   return setTimeout(function () {
+    $(`#${randomChosenColour}`).addClass("pressed");
+    return setTimeout(function () {
       $(`#${randomChosenColour}`).removeClass("pressed");
     }, 100);
   }
 }
-
 
 // $("document").ready(function () {
 //   const audio = new Audio("source.mp3");

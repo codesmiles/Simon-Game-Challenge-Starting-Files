@@ -10,8 +10,6 @@ $(document).keypress(function (e) {
   $("h1").text(`Level ${level}`); // leveling up
 });
 
-
-
 function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4); //0 - 3
   var randomChosenColour = buttonColours[randomNumber]; //random color from the array of buttonColours
@@ -55,13 +53,13 @@ function nextSequence() {
 
   // checking answers
   function checkAnswer(currentLevel) {
-    let Level = userClickedPattern.lastIndexOf(currentLevel)
-    
-    if (gamePattern.indexOf(currentLevel) == gamePattern.length-1) {
-      console.log(`success`)
-    }
-    else {
-      console.log(`wrong`)
+    currentLevel = currentLevel.toString();
+    let Level = userClickedPattern.lastIndexOf(currentLevel);
+
+    if (gamePattern.indexOf(currentLevel) === gamePattern.length - 1) {
+      console.log(`success`);
+    } else {
+      console.log(`wrong`);
     }
   }
 }

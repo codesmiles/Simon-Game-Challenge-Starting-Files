@@ -12,4 +12,4 @@ Alaye it is a simple memory game sha where the computer choses one random box fo
 - CSS(bootstrap)
 - Javascript(JQuery)
 
-## [Link to the page]()
+## [Link to the page](https://simon-game-challenge-starting-files.vercel.app/)

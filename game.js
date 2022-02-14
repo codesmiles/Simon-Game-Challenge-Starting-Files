@@ -3,8 +3,8 @@ const gamePattern = [];
 const userClickedPattern = [];
 let level = 0;
 let started = false;
-// Starting the game
 
+// Starting the game
 $(document).keypress(function (e) {
   if (!started) {
     $("h1").text(`Level ${level}`); // leveling up
@@ -60,7 +60,6 @@ function nextSequence() {
   playSound(randomChosenColour);
 }
 
-// To animate keys
 function animatePress(currentColour) {
   $(`#${currentColour}`).addClass("pressed");
   setTimeout(() => {
@@ -68,7 +67,6 @@ function animatePress(currentColour) {
   }, 100);
 }
 
-// Play sound based on random number
 function playSound(name) {
   return $(`#${name}`).ready(() => {
     const audio = new Audio(`sounds/${name}.mp3`);
@@ -76,13 +74,8 @@ function playSound(name) {
   });
 }
 
-// notify when you need to start over
 function startOver() {
   level = 0;
  gamePattern.splice(0, gamePattern.length);
   started = false;
 }
-// $("document").ready(function () {
-//   const audio = new Audio("source.mp3");
-//   audio.play();
-// });

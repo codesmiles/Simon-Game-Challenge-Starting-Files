@@ -5,14 +5,28 @@ let level = 0;
 let started = false;
 
 // Starting the game
-$(document).keypress(function (e) {
-  if (!started) {
-    $("h1").text(`Level ${level}`); // leveling up
-    nextSequence();
-    started = true;
-  }
-  // $(this).unbind("keypress");
-});
+if ($(window).width() < 1024) {
+  $(`h1`)
+    .text(`CLICK HERE to start`)
+    .click(function (e) {
+      if (!started) {
+        $("h1").text(`Level ${level}`); // leveling up
+        nextSequence();
+        started = true;
+      }
+    });
+} else {
+  $(`h1`).text(`Press A Key to Start`);
+  $(document).keypress(function (e) {
+    if (!started) {
+      $("h1").text(`Level ${level}`); // leveling up
+      nextSequence();
+      started = true;
+    }
+    // $(this).unbind("keypress");
+  });
+}
+
 
 $(".btn").click(function () {
   let userChosenColour = $(this).attr("id");
@@ -20,11 +34,10 @@ $(".btn").click(function () {
 
   // Play sound and animate
   playSound(userChosenColour);
-   animatePress(userChosenColour);
+  animatePress(userChosenColour);
 
   checkAnswer(userClickedPattern.length - 1); //check answer after user clicked
 });
-
 
 // checking answers
 function checkAnswer(currentLevel) {
@@ -41,7 +54,13 @@ function checkAnswer(currentLevel) {
   } else {
     playSound("wrong");
     $("body").addClass("game-over");
-    $("#level-title").text("Game Over, Press Any Key to Restart");
+  //  For mobile interactiveness
+    if ($(window).width() < 1024) {
+      $("#level-title").html("Game Over, CLICK HERE to Restart");
+      
+    } else {
+      $("#level-title").text("Game Over, Press Any Key to Restart");
+    }
     setTimeout(function () {
       $("body").removeClass("game-over");
     }, 200);
@@ -76,6 +95,6 @@ function playSound(name) {
 
 function startOver() {
   level = 0;
- gamePattern.splice(0, gamePattern.length);
+  gamePattern.splice(0, gamePattern.length);
   started = false;
 }

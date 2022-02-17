@@ -5,10 +5,10 @@ let level = 0;
 let started = false;
 
 // set highret score after the end of the game
-function highScore(level) {
+function highScore(levelUp) {
   let score = 0;
-  this.level = level;
-  return `The highest score is Level ${score + level}`;
+  this.levelUp = levelUp;
+  return `High score: Level ${score + levelUp}`;
 }
 
 // Starting the game
@@ -85,7 +85,7 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber]; //random color from the array of buttonColours
   gamePattern.push(randomChosenColour); //  push the random colors generated into the gamePattern array
   $(`#${randomChosenColour}`).fadeIn(100).fadeOut(100).fadeIn(100); // Pick random divs with random colours
-  playSound(randomChosenColour);
+  // playSound(randomChosenColour);
 }
 
 function animatePress(currentColour) {
